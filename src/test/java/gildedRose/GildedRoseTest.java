@@ -141,5 +141,25 @@ public class GildedRoseTest {
         assertEquals(1, item.getSellIn());
     }
 
+    @Test
+    public void should_return_5_given_a_Conjured_item_its_sellIn_is_3_quality_is_6() throws Exception {
+        Item item = new Item("Conjured Mana Cake", 3, 6);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(5, item.getQuality());
+        assertEquals(2, item.getSellIn());
+    }
+
+    @Test
+    public void should_return_4_given_a_Conjured_item_its_sellIn_is_0_quality_is_6() throws Exception {
+        Item item = new Item("Conjured Mana Cake", 0, 6);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(4, item.getQuality());
+        assertEquals(-1, item.getSellIn());
+    }
+
 
 }
