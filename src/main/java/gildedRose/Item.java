@@ -8,6 +8,8 @@ public class Item {
 
     public int quality;
 
+    public ItemStrategy itemStrategy;
+
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn = sellIn;
@@ -34,65 +36,18 @@ public class Item {
     public void updateQuality() {
         switch (name) {
             case "Aged Brie" :
-                agedBrieUpdate();
+                itemStrategy = new AgedBrie();
                 break;
             case "Backstage passes to a TAFKAL80ETC concert" :
-                backstageUpdate();
+                itemStrategy = new Backstage();
                 break;
             case "Sulfuras, Hand of Ragnaros" :
-                sulfurasUpdate();
+                itemStrategy = new Sulfuras();
                 break;
             default:
-                normalUpdate();
+                itemStrategy = new NormalItem();
         }
+        itemStrategy.update(this);
     }
 
-    public void normalUpdate() {
-        if(quality > 0) {
-            quality = quality - 1;
-        }
-        sellIn = sellIn - 1;
-        if(sellIn < 0) {
-            if(quality > 0) {
-                quality = quality - 1;
-            }
-        }
-    }
-
-    public void agedBrieUpdate() {
-        if (quality < 50) {
-            quality = quality + 1;
-        }
-        sellIn = sellIn - 1;
-        if (sellIn < 0) {
-            if (quality < 50) {
-                quality = quality + 1;
-            }
-
-        }
-    }
-    public void backstageUpdate() {
-        if (quality < 50) {
-            quality = quality + 1;
-            if (sellIn < 11) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
-
-            if (this.sellIn < 6) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
-            }
-        }
-        sellIn = sellIn - 1;
-        if (sellIn < 0) {
-            quality = quality - quality;
-        }
-    }
-
-    public void sulfurasUpdate() {
-
-    }
 }
