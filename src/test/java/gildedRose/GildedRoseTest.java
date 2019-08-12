@@ -59,4 +59,14 @@ public class GildedRoseTest {
         assertEquals(50, item.getQuality());
         assertEquals(1, item.getSellIn());
     }
+
+    @Test
+    public void should_return_80_given_a_Sulfuras_item_its_sellIn_is_0_quality_is_80() throws Exception {
+        Item item = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(80, item.getQuality());
+        assertEquals(0, item.getSellIn());
+    }
 }
