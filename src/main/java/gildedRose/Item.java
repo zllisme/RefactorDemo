@@ -14,6 +14,7 @@ public class Item {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        createItemStrategyByName(name);
     }
 
    @Override
@@ -34,20 +35,11 @@ public class Item {
     }
 
     public void updateQuality() {
-        switch (name) {
-            case "Aged Brie" :
-                itemStrategy = new AgedBrie();
-                break;
-            case "Backstage passes to a TAFKAL80ETC concert" :
-                itemStrategy = new Backstage();
-                break;
-            case "Sulfuras, Hand of Ragnaros" :
-                itemStrategy = new Sulfuras();
-                break;
-            default:
-                itemStrategy = new NormalItem();
-        }
         itemStrategy.update(this);
+    }
+
+    public void createItemStrategyByName(String name) {
+        itemStrategy = ItemStrategyFactory.createItemStrategy(name);
     }
 
 }
