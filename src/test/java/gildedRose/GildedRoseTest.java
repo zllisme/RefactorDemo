@@ -39,4 +39,24 @@ public class GildedRoseTest {
         assertEquals(18, item.getQuality());
         assertEquals(-1, item.getSellIn());
     }
+
+    @Test
+    public void should_return_1_given_an_Aged_Brie_item_its_sellIn_is_2_quality_is_0() throws Exception {
+        Item item = new Item("Aged Brie", 2, 0);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(1, item.getQuality());
+        assertEquals(1, item.getSellIn());
+    }
+
+    @Test
+    public void should_return_50_given_an_Aged_Brie_item_its_sellIn_is_2_quality_is_50() throws Exception {
+        Item item = new Item("Aged Brie", 2, 50);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(50, item.getQuality());
+        assertEquals(1, item.getSellIn());
+    }
 }
