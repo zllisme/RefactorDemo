@@ -9,6 +9,8 @@ public class ItemStrategyFactory {
                 return new Backstage();
             case "Sulfuras, Hand of Ragnaros":
                 return  new Sulfuras();
+            case  "Conjured":
+                return new Conjured();
             default:
                 return new NormalItem();
         }

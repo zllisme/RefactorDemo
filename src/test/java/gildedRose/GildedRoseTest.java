@@ -152,5 +152,29 @@ public class GildedRoseTest {
         assertEquals(0, item.getSellIn());
     }
 
+    @Test
+    public void should_return_19_when_call_updateQuality_given_Conjured_item_sellin_10_quality_20() {
+        Item item = new Item("Conjured", 10, 20);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(18, item.getQuality());
+        assertEquals(9, item.getSellIn());
+    }
+
+
+    @Test
+    public void should_return_18_when_call_updateQuality_given_conjured_item_sellin_0_quality_20() {
+        Item item = new Item("Conjured", 0, 20);
+        Item[] items = new Item[] { item };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(16, item.getQuality());
+        assertEquals(-1, item.getSellIn());
+    }
+
+
+
 
 }
